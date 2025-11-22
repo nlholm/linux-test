@@ -59,3 +59,6 @@ services:
 9. nyt näkyy selaimessa uusi sivu defaultin tilalla
 
 Tätä voisi koittaa automatisoida Saltilla seuraavaksi
+
+
+https://saikiranpikili.medium.com/building-your-monitoring-stack-automating-docker-installation-with-saltstack-9d352d8e14ad  <- maksumuurin takana, mut jotain ideaa vois saada
