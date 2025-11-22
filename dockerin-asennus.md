@@ -21,3 +21,41 @@ https://docs.docker.com/engine/install/debian/#install-using-the-repository
 
 Hyvin näytti toimivan. Huom. jos käytämme Vagranttia ja asennamme bookwormin, niin tuo asennus ei ihan toimi sellaisenaan.
 Mutta tuolla sivulla taisi olla ohje millä haetaan asennus tiettyyn versioon.
+
+# Kikkailua
+
+## nginx
+
+1. sudo docker run -d -p 8080:80 nginx
+2. avaa nettiselain ja mene osoitteeseen: localhost:8080
+3. pitäisi näkyä welcome to nginx!
+4. Nyt voit luoda muutaman kontin lisää esim -> sudo docker run -d -p 8081:80 nginx -> sudo docker run -d -p 8082:80 nginx
+5. katsoa niiden tilat komennolla sudo docker ps
+6. seuraavaksi pysäytetään jo poistetaan kontit
+7. sudo docker stop [nimi]
+8. sudo docker rm [nimi]
+
+https://hub.docker.com/_/nginx
+
+### Muokataan etusivu
+
+1. mkdir /home/user/nginx-demo/sites
+2. cd sites
+3. index.html
+4. cd ..
+5. pwd
+6. /home/user/nginx-demo/
+7. nano docker-compose.yml
+```
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+```
+8. sudo docker compose up -d (tämä ajetaan tuolla projektikansiossa)
+9. nyt näkyy selaimessa uusi sivu defaultin tilalla
+
+Tätä voisi koittaa automatisoida Saltilla seuraavaksi
